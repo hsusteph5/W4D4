@@ -5,7 +5,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    # debugger
     #params pulling route path (url)
     @user = User.find_by(id: params[:id])
     if @user
