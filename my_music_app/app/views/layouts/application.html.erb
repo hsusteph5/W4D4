@@ -10,6 +10,26 @@
   </head>
 
   <body>
+    <div id="head">
+      <h1> My Music App </h1>
+    <!-- with the helper methods in the application controller -->
+    <!-- have access to all the methods  -->
+      <% if logged_in? %>
+        Welcome, <%= current_user.email %>
+        <!-- use a form to delete a session aka sign out -->
+        <form action=" <%= session_url  %>" method="post">
+          <input type="hidden"
+            name="authenticity_token"
+            value="<%= form_authenticity_token  %>"
+          >
+          <input type="hidden" name="_method" value="delete">
+          <input type="submit" value="Logout!">
+        </form>
+      <% else  %>
+        <a href="<%= new_session_url %>">Sign In</a>
+        <a href="<%= new_user_url %> ">Sign Up</a>
+      <% end %>
+    </div>
     <%= yield %>
   </body>
 </html>

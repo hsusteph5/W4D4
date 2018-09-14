@@ -1,0 +1,20 @@
+<%if type == :login %>
+<!-- for logging in, you are posting to the session url for create -->
+  <% button_val = "Login" %>
+  <% action_url = session_url %>
+<% elsif type == :new %>
+<!-- for creating a new user, you are posting users url for create -->
+  <% action_url = users_url %>
+<% end %>
+
+<form action="<%= action_url %>" method="post">
+  <input type="hidden"
+    name="authenticity_token"
+    value="<%= form_authenticity_token  %>"
+  >
+  <label for="email">Email:
+      <input type="email" name="user[email]"></label>
+  <label for="password">Password:
+    <input type="password" name="user[password]"></label>
+  <input type="submit" value="<%= button_val %>">
+</form>
